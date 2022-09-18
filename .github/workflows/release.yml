@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags: v*
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      release: true
+
+  create-release:
+    needs: build
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: download all artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts/
+      - name: list artifacts
+        run: |
+          for artifact in $(ls artifacts/); do
+            if [[ -f $(echo artifacts/${artifact}/*.dmg) ]]; then
+              mv artifacts/${artifact}/*.dmg artifacts/${artifact}.dmg
+              continue
+            fi
+
+            zip -j artifacts/${artifact}.zip artifacts/${artifact}/**
+          done
+      - name: new release
+        uses: ncipollo/release-action@v1
+        id: create_release
+        with:
+          draft: true
+          prerelease: false
+          artifacts: artifacts/*.zip, artifacts/**/*.dmg
+          generateReleaseNotes: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

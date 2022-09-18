@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
+  clippy:
+    runs-on: 'ubuntu-20.04'
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - uses: Swatinem/rust-cache@v1
+      - name: Check
+        run: |
+          cargo clippy -- -D warnings
