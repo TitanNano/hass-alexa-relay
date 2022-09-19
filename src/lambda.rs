@@ -86,7 +86,7 @@ pub async fn lambda_handler(
     let token = scope
         .token
         .clone()
-        .or_else(|| access_token.map(|t| t.to_owned()))
+        .or(access_token)
         .ok_or_else(|| anyhow!("access token missing!"))?;
 
     let client = reqwest::Client::new();

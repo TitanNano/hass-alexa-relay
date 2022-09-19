@@ -1,0 +1,39 @@
+name: Build Project
+
+on:
+  workflow_call:
+    inputs:
+      release:
+        type: boolean
+        default: false
+        required: false
+
+jobs:
+  rust-build:
+    runs-on: "ubuntu-20.04"
+
+    env:
+      CARGO_BUILD: cargo lambda build
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - uses: Swatinem/rust-cache@v1
+    - name: Install cargo-lambda
+      run: |
+        sudo snap install zig --beta --classic
+        cargo install cargo-lambda
+    - name: Build Debug
+      if: ${{ !inputs.release }}
+      run: |
+        ${{ env.CARGO_BUILD}}
+    - name: Build Release
+      if: inputs.release
+      run: |
+        cd native/
+        ${{ env.CARGO_BUILD}} --release
+    - name: Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+          name: hass-alexa-relay
+          path: target/lambda/hass-alexa-relay/bootstrap
