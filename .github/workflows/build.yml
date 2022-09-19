@@ -13,7 +13,7 @@ jobs:
     runs-on: "ubuntu-20.04"
 
     env:
-      CARGO_BUILD: cargo lambda build --output-format Zip
+      CARGO_BUILD: cargo lambda build
 
     steps:
     - name: checkout
@@ -36,4 +36,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: hass-alexa-relay
-          path: target/lambda/hass-alexa-relay/bootstrap.zip
+          path: target/lambda/hass-alexa-relay/bootstrap
