@@ -6,6 +6,7 @@ An AWS lambda function that enables the connection between Amazons Alexa and a H
 This lambda implementation of the home assistant Alexa skill lambda enables the connection to a home assistant instance that is only accessible via a Wireguard VPN.
 
 ## Installation
+For a detailed setup guide refer to [SETUP.md](/SETUP.md)
 
 ### Pre-built Binary
 Download the pre-built binary from the release page and upload the zip file to your lambda function. Make sure to set the runtime to `Custom runtime on Amazon Linux 2`,
