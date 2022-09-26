@@ -36,6 +36,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "async-recursion"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2cda8f4bcc10624c4e85bc66b3f452cca98cfa5ca002dc83a16aad2367641bea"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "async-stream"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -743,11 +754,12 @@ checksum = "2f7254b99e31cad77da24b08ebf628882739a608578bb1bcdfc1f9c21260d7c0"
 
 [[package]]
 name = "onetun"
-version = "0.3.3"
+version = "0.3.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4eb5d06fc7ef1a8a0693d61ee55137997ef000ff3e5f024b75288ead7fb9dc5b"
+checksum = "ce699c810933a7fd14fe8af723a808d03a684df82c88fce885cc383c80d5eb4f"
 dependencies = [
  "anyhow",
+ "async-recursion",
  "async-trait",
  "boringtun",
  "futures",
@@ -757,6 +769,7 @@ dependencies = [
  "rand",
  "smoltcp",
  "tokio",
+ "tracing",
 ]
 
 [[package]]
