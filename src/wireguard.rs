@@ -11,15 +11,15 @@ use onetun::{
 
 pub async fn start_wireguard(
     endpoint: SocketAddr,
-    private_key: X25519SecretKey,
-    public_key: X25519PublicKey,
+    private_key: Arc<X25519SecretKey>,
+    public_key: Arc<X25519PublicKey>,
     source_peer_ip: IpAddr,
     ha_host: SocketAddr,
     log_level: String,
 ) -> Result<()> {
     let config = onetun::config::Config {
-        private_key: Arc::new(private_key),
-        endpoint_public_key: Arc::new(public_key),
+        private_key,
+        endpoint_public_key: public_key,
         endpoint_addr: endpoint,
         source_peer_ip,
         keepalive_seconds: Some(5),
