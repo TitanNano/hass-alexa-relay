@@ -30,7 +30,6 @@ jobs:
     - name: Build Release
       if: inputs.release
       run: |
-        cd native/
         ${{ env.CARGO_BUILD}} --release
     - name: Artifacts
       uses: actions/upload-artifact@v3

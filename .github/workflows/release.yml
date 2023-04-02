@@ -4,6 +4,13 @@ on:
   push:
     tags: v*
 
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Git Tag'
+        required: true
+        type: string
+
 env:
   CARGO_TERM_COLOR: always
 
@@ -40,5 +47,6 @@ jobs:
           prerelease: false
           artifacts: artifacts/*.zip, artifacts/**/*.dmg
           generateReleaseNotes: true
+          tag: ${{ inputs.tag }}          
         env:
           GITHUB_TOKEN: ${{ github.token }}
