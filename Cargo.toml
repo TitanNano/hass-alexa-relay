@@ -7,7 +7,7 @@ edition = "2021"
 anyhow = { version = "1.0.72", features = ["backtrace"] }
 clap = { version = "3.2.22", features = ["derive", "env"] }
 lambda_runtime = "0.8.1"
-log = "0.4.17"
+log = "0.4.19"
 onetun = { version = "0.3.4", default-features = false }
 pretty_env_logger = "0.5.0"
 reqwest = { version = "0.11.18", features = ["rustls-tls-native-roots"], default-features = false }
