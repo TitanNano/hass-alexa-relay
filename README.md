@@ -1,5 +1,8 @@
 # HASS Alexa Relay
-
+> [!IMPORTANT]
+> **There will be no further developmen on this project!** I recomend everyone to switch to the [Home-Assistant-Matter-Hub Add-on](https://github.com/t0bst4r/home-assistant-matter-hub). for integrating Alexa with Home-Assistant.
+> This integration has worked very well for me and will continue to work, but there is considerable overhead and latency when connecting two devices (Alexa and Home Assistant) via the internet.
+ 
 An AWS lambda function that enables the connection between Amazons Alexa and a Home Assistant instance via a wireguard VPN tunnel.
 
 ## Why?
